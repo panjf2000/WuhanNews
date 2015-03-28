@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="E:\APP\as\WuhanNews\AndBase\res"/><source path="E:\APP\as\WuhanNews\AndBase\build\generated\res\rs\release"/><source path="E:\APP\as\WuhanNews\AndBase\build\generated\res\generated\release"/></dataSet><dataSet config="release"><source path="E:\APP\as\WuhanNews\AndBase\build-types\release\res"/></dataSet><mergedItems/></merger>

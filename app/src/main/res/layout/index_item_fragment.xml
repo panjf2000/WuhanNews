@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ab.view.pullview.AbPullToRefreshView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mPullRefreshView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#dffcfa">
+
+    <LinearLayout
+        android:id="@+id/viewpagerlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <FrameLayout
+
+            android:layout_width="fill_parent"
+            android:layout_height="216dip">
+
+            <net.wutnews.app.app.util.MyViewPage2
+                android:id="@+id/vp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="48dip"
+                android:layout_gravity="bottom"
+                android:background="#000000"
+                android:alpha="0.7"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="中国家庭院校园区域名字体现"
+                    android:gravity="left|top"
+                    android:paddingTop="4dp"
+                    android:paddingLeft="16dp"
+                    android:textSize="18sp"
+                    android:textColor="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:gravity="center_vertical|right">
+
+                    <View
+                        android:id="@+id/v_dot0"
+                        style="@style/dot_style"
+                        android:background="@drawable/dot_normal" />
+
+                    <View
+                        android:id="@+id/v_dot1"
+                        style="@style/dot_style" />
+
+                    <View
+                        android:id="@+id/v_dot2"
+                        style="@style/dot_style" />
+
+                    <View
+                        android:id="@+id/v_dot3"
+                        style="@style/dot_style" />
+
+                    <!--<View-->
+                    <!--android:id="@+id/v_dot4"-->
+                    <!--style="@style/dot_style" />-->
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/mListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="#00000000"
+        android:divider="#0000"
+        android:visibility="visible"
+        android:dividerHeight="1px" />
+
+
+</com.ab.view.pullview.AbPullToRefreshView>

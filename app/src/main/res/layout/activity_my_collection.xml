@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_back"
+    android:orientation="vertical"
+    tools:context="net.wutnews.app.app.act.menu.MyCollection">
+
+    <include layout="@layout/titlebar" />
+
+
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:divider="#0000"
+        android:dividerHeight="16dp"
+        android:listSelector="#0000"
+        android:scrollbars="none" />
+
+    <LinearLayout
+        android:id="@+id/ll_delete"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/app_color"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/delete" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

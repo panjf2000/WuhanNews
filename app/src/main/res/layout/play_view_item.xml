@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/mPlayImage"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="#bb000000" >
+
+        <TextView
+            android:id="@+id/mPlayText"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:background="#00000000"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:text="很好很强大"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</RelativeLayout>
