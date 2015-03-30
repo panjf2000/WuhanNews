@@ -48,4 +48,17 @@
         <item name="android:thumb">@drawable/thumb</item>
         <item name="android:thumbOffset">10.0dip</item>
     </style>
+	<style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+	<style name="Register_IdentityChooseDialogButton">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">50dp</item>
+        <item name="android:paddingRight">50dp</item>
+        <item name="android:background">@drawable/button_white_background</item>
+        <item name="android:textColor">@color/DarkGreen</item>
+        <item name="android:textSize">@dimen/TextSize2</item>
+    </style>
 </resources>
