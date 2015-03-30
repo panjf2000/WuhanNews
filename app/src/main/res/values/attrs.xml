@@ -4,5 +4,10 @@
     <declare-styleable name="com.baidu.mobads.AdView">
 		<attr name="adSize" format="integer" />
 	</declare-styleable> 
+	<!-- net.wutnews.app.framge.widget.CircleImageView圆形ImageView控件的属性 -->
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
     
 </resources>
