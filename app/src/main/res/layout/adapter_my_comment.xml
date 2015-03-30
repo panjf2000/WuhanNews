@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/background_light">
+
+    <RelativeLayout
+        android:id="@+id/head"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <net.wutnews.app.frame.widget.CircleImageView
+            android:id="@+id/userHead"
+            android:layout_width="@dimen/List_UserHeadSize"
+            android:layout_height="@dimen/List_UserHeadSize"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/app_logo"/>
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/TextSize2"
+            android:layout_toRightOf="@id/userHead"
+            android:background="@color/QuestionList_GradeBackground"
+            android:text="匿名"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/TextSize3"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"/>
+
+
+        <TextView
+            android:id="@+id/newsCreateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10分钟前"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/GrayGreen"
+            android:textSize="@dimen/TextSize4"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+        <View
+            android:layout_width="@dimen/List_UserHeadSize"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/TextSize6">
+
+
+
+            <TextView
+                android:id="@+id/newsContent"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="题目文本内容题目文本内容题目文本内容题目文本内容题目"
+                android:textColor="@color/Gray"
+                android:textSize="@dimen/TextSize3"/>
+
+            <TextView
+                android:id="@+id/newsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="新闻标题"
+                android:layout_marginTop="@dimen/TextSize5"
+                android:textColor="@color/app_color"
+                android:textSize="@dimen/TextSize4"/>
+            <ImageView
+                android:id="@+id/questionImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center_horizontal"/>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/LineWidth"
+        android:layout_marginTop="5dp"
+        android:background="@color/LightGreen"/>
+
+</LinearLayout>
