@@ -62,6 +62,10 @@
             android:name=".app.act.menu.MyCollection"
             android:label="@string/title_activity_my_collection" >
         </activity>
+        <activity
+            android:name=".app.act.menu.MyComment"
+            android:label="@string/title_activity_my_comment" >
+        </activity>
     </application>
 
 </manifest>
