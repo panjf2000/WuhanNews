@@ -93,7 +93,7 @@ public class NewsFrgText extends AppBaseFrg implements AdapterView.OnItemClickLi
             public void doSuccess(String data) {
                 GetNewsList datalIST = gsonUtil.getInstance().json2Bean(data, GetNewsList.class);
                 list = datalIST.getData();
-                if(null==list||list.size()==0){
+                if (null == list || list.size() == 0) {
                     return;
                 }
                 listUp = new ArrayList<>();
@@ -107,7 +107,7 @@ public class NewsFrgText extends AppBaseFrg implements AdapterView.OnItemClickLi
                         listUp.add(list.get(x));
                     }
                 }
-                newsListAdapter = new NewsListAdapter(getActivity(), list, listUp, termId,datalIST.getTermname());
+                newsListAdapter = new NewsListAdapter(getActivity(), list, listUp, termId, datalIST.getTermname());
                 mListView.setAdapter(newsListAdapter);
 
 
@@ -164,7 +164,7 @@ public class NewsFrgText extends AppBaseFrg implements AdapterView.OnItemClickLi
                     return;
                 }
                 list.addAll(cacheList);
-                newsListAdapter = new NewsListAdapter(getActivity(), list, listUp, termId,datalIST.getTermname());
+                newsListAdapter = new NewsListAdapter(getActivity(), list, listUp, termId, datalIST.getTermname());
                 mListView.setAdapter(newsListAdapter);
                 mAbPullToRefreshView.onFooterLoadFinish();
             }
@@ -200,7 +200,7 @@ public class NewsFrgText extends AppBaseFrg implements AdapterView.OnItemClickLi
                     }
 //                    list.clear();
                 }
-                newsListAdapter = new NewsListAdapter(getActivity(), list, listUp, termId,datalIST.getTermname());
+                newsListAdapter = new NewsListAdapter(getActivity(), list, listUp, termId, datalIST.getTermname());
                 mListView.setAdapter(newsListAdapter);
                 mAbPullToRefreshView.onHeaderRefreshFinish();
             }
