@@ -29,6 +29,21 @@
     <color name="app_back">#F0F0F0</color>
     <color name="gray_text">#C9C9C9</color>
 
+    <color name="Green">#0E9992</color>
+    <color name="DarkGreen">#005050</color>
+    <color name="LightGreen">#C3DDDF</color>
+    <color name="GrayGreen">#649696</color>
+    <color name="Gray">#9D9D9D</color>
+    <color name="DarkGray">#848484</color>
+    <color name="LightGray">#D2D2D2</color>
+    <color name="Transparent">#00000000</color>
 
+    <color name="ActivityBackground">#D9D9D9</color>
+    <color name="ActivityForegroundDark">#F0F0F0</color>
+    <color name="ActivityForegroundLight">#F7F7F7</color>
+    <color name="transparentgreenback">#F7F7F7</color>
+    <color name="QuestionList_GradeBackground">#F3A092</color>
+    <color name="QuestionList_SubjectBackground">#81D396</color>
+    <color name="NormalGreen">#0e9992</color>
 
 </resources>
