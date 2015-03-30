@@ -55,7 +55,7 @@ public class ImageLoaderUtil {
 	/**
 	 * 最大线程数 默认5
 	 */
-	private int maxThreadNums = 3;
+	private int maxThreadNums = 5;
 
 	/**
 	 * 本地缓存文件夹 默认 ImageLoader/cache
