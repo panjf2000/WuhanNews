@@ -16,5 +16,11 @@
     <string name="title_activity_about">AboutAct</string>
     <string name="title_activity_user_center">UserCenter</string>
     <string name="title_activity_my_collection">MyCollection</string>
+    <string name="title_activity_my_comment">MyComment</string>
+	<!-- 获取图片 -->
+    <string name="GetImage_Camera">拍照</string>
+    <string name="GetImage_Gallery">从图库中选择</string>
+    <string name="GetImage_Cancel">取消</string>
+
 
 </resources>
