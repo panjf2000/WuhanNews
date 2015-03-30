@@ -1,9 +1,11 @@
 package net.wutnews.app.app.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ import com.ab.util.AbImageUtil;
 import com.lidroid.xutils.util.LogUtils;
 
 import net.wutnews.app.R;
+import net.wutnews.app.app.act.news.NewsDetail;
 import net.wutnews.app.app.entiy.GetCollectList;
 import net.wutnews.app.app.entiy.GetCollectListData;
 import net.wutnews.app.app.util.uurl;
@@ -85,8 +88,8 @@ public class MyCollectionAdapter extends ArrayAdapter<GetCollectListData> {
             }
         });
         if (!getItem(position).getSmeta().equals("")) {
-            imageLoader.display(mHolder.img, uurl.IMG_URL+getItem(position).getSmeta());
-        }else{
+            imageLoader.display(mHolder.img, uurl.IMG_URL + getItem(position).getSmeta());
+        } else {
             mHolder.img.setImageResource(R.drawable.app_logo);
         }
 
@@ -99,4 +102,5 @@ public class MyCollectionAdapter extends ArrayAdapter<GetCollectListData> {
         private TextView term, title, time;
 
     }
+
 }
