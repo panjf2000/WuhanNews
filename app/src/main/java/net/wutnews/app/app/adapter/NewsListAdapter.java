@@ -59,7 +59,7 @@ public class NewsListAdapter extends ArrayAdapter<GetNewsListData> {
         } else {
             mHolder = (ViewHolder) convertView.getTag();
         }
-        if (position == 0) {
+        if (position < 4) {
             mHolder.playView.setVisibility(View.VISIBLE);
             mHolder.layout.setVisibility(View.GONE);
 
