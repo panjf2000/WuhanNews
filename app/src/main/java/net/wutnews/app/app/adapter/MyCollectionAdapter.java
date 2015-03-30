@@ -84,7 +84,12 @@ public class MyCollectionAdapter extends ArrayAdapter<GetCollectListData> {
 
             }
         });
-        imageLoader.display(mHolder.img, uurl.IMG_URL+getItem(position).getSmeta());
+        if (!getItem(position).getSmeta().equals("")) {
+            imageLoader.display(mHolder.img, uurl.IMG_URL+getItem(position).getSmeta());
+        }else{
+            mHolder.img.setImageResource(R.drawable.app_logo);
+        }
+
 
         return view;
     }
