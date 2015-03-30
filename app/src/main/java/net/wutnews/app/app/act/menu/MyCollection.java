@@ -1,7 +1,9 @@
 package net.wutnews.app.app.act.menu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -9,6 +11,7 @@ import com.lidroid.xutils.util.LogUtils;
 
 import net.wutnews.app.R;
 import net.wutnews.app.app.act.app.AppBaseAct;
+import net.wutnews.app.app.act.news.NewsDetail;
 import net.wutnews.app.app.adapter.MyCollectionAdapter;
 import net.wutnews.app.app.entiy.DeleteCollection;
 import net.wutnews.app.app.entiy.GetCollectList;
@@ -23,7 +26,7 @@ import net.wutnews.app.frame.util.gsonUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyCollection extends AppBaseAct implements View.OnClickListener {
+public class MyCollection extends AppBaseAct implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private ListView lv;
     private MyCollectionAdapter adapter;
@@ -43,7 +46,7 @@ public class MyCollection extends AppBaseAct implements View.OnClickListener {
         lv = (ListView) findViewById(R.id.lv);
         ll_delete = (LinearLayout) findViewById(R.id.ll_delete);
         ll_delete.setOnClickListener(this);
-
+        lv.setOnItemClickListener(this);
         getCollectList();
 
 
@@ -85,9 +88,8 @@ public class MyCollection extends AppBaseAct implements View.OnClickListener {
         sender.send(uurl.MODE);
     }
 
-    private void deleteCollection(final String id)
-    {
-        DeleteCollection deleteCollection=new DeleteCollection();
+    private void deleteCollection(final String id) {
+        DeleteCollection deleteCollection = new DeleteCollection();
         deleteCollection.setUser(getUserinfo(this).getUser());
         deleteCollection.setCollectid(id);
         HttpSender sender = new HttpSender(uurl.DeleteCollection, "删除收藏", deleteCollection, new OnHttpResListener() {
@@ -95,7 +97,7 @@ public class MyCollection extends AppBaseAct implements View.OnClickListener {
             public void doSuccess(String data) {
 
                 ResponseBase temp = gsonUtil.getInstance().json2Bean(data, ResponseBase.class);
-                if (temp.getStatus()==200) {
+                if (temp.getStatus() == 200) {
 
                     LogUtils.i("刪除收藏: " + id);
 
@@ -169,5 +171,15 @@ public class MyCollection extends AppBaseAct implements View.OnClickListener {
         }
 
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent i = new Intent(MyCollection.this, NewsDetail.class);
+        i.putExtra("news_url", list.get(position).getUrl());
+        //i.putExtra("news_collection", list.get(position).getPost_collect());
+        i.putExtra("termId", 1 + "");
+        i.putExtra("newsId", list.get(position).getId());
+        startActivity(i);
     }
 }
