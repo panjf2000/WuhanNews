@@ -59,7 +59,7 @@ public class NewsListAdapter extends ArrayAdapter<GetNewsListData> {
         } else {
             mHolder = (ViewHolder) convertView.getTag();
         }
-        if (position < 4) {
+        if (position == 0) {
             mHolder.playView.setVisibility(View.VISIBLE);
             mHolder.layout.setVisibility(View.GONE);
 
@@ -72,7 +72,7 @@ public class NewsListAdapter extends ArrayAdapter<GetNewsListData> {
 //                    imageLoader.setMaxHeight(400);
 //                    imageLoader.setMaxWidth(400);
 //                    imageLoader.display(mPlayImage, uurl.IMG_URL + listUp.get(i).getSmeta());
-                    imageUtil.setImage(uurl.IMG_URL + listUp.get(i).getSmeta(),mPlayImage);
+                    imageUtil.setImage(uurl.IMG_URL + listUp.get(i).getSmeta(), mPlayImage);
                 }
                 mPlayImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 mHolder.playView.addView(mPlayView);
@@ -93,7 +93,12 @@ public class NewsListAdapter extends ArrayAdapter<GetNewsListData> {
                 });
             }
 
-        } else {
+        }else if(position<4)
+        {
+            mHolder.layout.setVisibility(View.GONE);
+            mHolder.playView.setVisibility(View.GONE);
+        }
+        else{
             mHolder.layout.setVisibility(View.VISIBLE);
             mHolder.playView.setVisibility(View.GONE);
             if (!getItem(position).getSmeta().equals("")) {
