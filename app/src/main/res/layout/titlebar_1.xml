@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/TitleBarHeight"
+    android:background="@color/app_color">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="null"
+        android:textColor="@android:color/white"
+        android:id="@+id/customTitleCenterText"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/TextSize1"/>
+
+    <TextView
+        android:id="@+id/customTitleLeftText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/PaddingNormal"
+        android:text="null"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/TextSize2"/>
+
+    <TextView
+        android:id="@+id/customTitleRightText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/PaddingNormal"
+        android:text="null"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/TextSize2"/>
+
+    <!-- 标题栏中的ImageView即使不设置margin，每个ImageView两边仍会留有一定距离，目前未解 -->
+    <ImageView
+        android:id="@+id/customTitleLeftImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/PaddingNormal"/>
+
+    <ImageView
+        android:id="@+id/customTitleRightImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/PaddingNormal"/>
+
+</RelativeLayout>
