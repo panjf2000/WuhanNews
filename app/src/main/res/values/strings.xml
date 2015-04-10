@@ -21,6 +21,9 @@
     <string name="GetImage_Camera">拍照</string>
     <string name="GetImage_Gallery">从图库中选择</string>
     <string name="GetImage_Cancel">取消</string>
-
+    <string name="title_activity_post">PostActivity</string>
+    <string name="photo_add_name">拍照相册选择</string>
+    <string name="okBtn">确定</string>
+    <string name="cancelBtn">取消</string>
 
 </resources>
