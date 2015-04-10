@@ -5,4 +5,34 @@
     <!-- slidingmenu配置 -->
     <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="shadow_width">16dp</dimen>
+	<!-- 字体大小，分6个等级，1-6逐渐减小 -->
+    <dimen name="TextSize1">25sp</dimen>
+    <dimen name="TextSize2">17.5sp</dimen>
+    <dimen name="TextSize3">15sp</dimen>
+    <dimen name="TextSize4">12.5sp</dimen>
+    <dimen name="TextSize5">10sp</dimen>
+    <dimen name="TextSize6">7.5sp</dimen>
+
+    <dimen name="PaddingNormal">10dp</dimen>
+    <dimen name="PaddingSmall">5dp</dimen>
+
+    <dimen name="MarginLarge">30dp</dimen>
+    <dimen name="MarginNormal">10dp</dimen>
+    <dimen name="MarginSmall">5dp</dimen>
+
+    <dimen name="RectangleCornersRadiusNormal">5dp</dimen>
+
+    <dimen name="LineWidth">0.5dp</dimen>
+
+    <dimen name="List_UserHeadSize">35dp</dimen>
+
+    <dimen name="ListItemHeight">50dp</dimen>
+
+    <dimen name="User_HeadImageSize">60dp</dimen>
+    <dimen name="User_HeadImageSizeSmall">50dp</dimen>
+
+    <dimen name="TitleBarHeight">50dp</dimen>
+    <dimen name="XueyuanMargin">17.5dp</dimen>
+    <dimen name="Pace">5dp</dimen>
+
 </resources>
