@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.util.LogUtils;
 
 import net.wutnews.app.R;
 import net.wutnews.app.app.act.Login.LoginAct;
@@ -39,6 +40,7 @@ public class UserCenter extends AppBaseAct implements View.OnClickListener {
         findViewById(R.id.ll_my_comment).setOnClickListener(this);
         findViewById(R.id.ll_my_collection).setOnClickListener(this);
         findViewById(R.id.ll_logout).setOnClickListener(this);
+        findViewById(R.id.mySignature).setOnClickListener(this);
     }
 
 
@@ -48,10 +50,14 @@ public class UserCenter extends AppBaseAct implements View.OnClickListener {
             default:
                 break;
             case R.id.iv_head:
+                break;
+            case R.id.mySignature:
 
-
+                Intent sigInte = new Intent(this, PostActivity.class);
+                startActivity(sigInte);
                 break;
             case R.id.ll_my_comment:
+
                 Intent intent = new Intent(this, MyComment.class);
                 startActivity(intent);
                 break;
