@@ -22,7 +22,6 @@ import net.wutnews.app.frame.IdoHttpUtil.OnHttpResListener;
 import net.wutnews.app.frame.util.StringUtil;
 import net.wutnews.app.frame.util.gsonUtil;
 
-import java.util.Objects;
 
 public class NewsDetail extends AppBaseAct implements View.OnClickListener {
 
@@ -230,6 +229,9 @@ public class NewsDetail extends AppBaseAct implements View.OnClickListener {
                 if (responseBase.getStatus() == 200) {
                     if (responseBase.getMsg().equals("INSERT_SUCCESS")) {
                         toast("评论成功!");
+                        edt_comment.setText("");
+                        ll_menulayout.setVisibility(View.VISIBLE);
+                        ll_edtlayout.setVisibility(View.GONE);
                     }
                 }
             }
