@@ -38,8 +38,6 @@ public class LoginAct extends AppBaseAct implements View.OnClickListener {
         setTitleBar("理工发布");
         findView();
 
-//        edt_username.setText("214219");
-//        edt_password.setText("061803");
     }
 
     private void findView() {
