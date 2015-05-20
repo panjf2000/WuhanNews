@@ -4,7 +4,6 @@ import java.io.File;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.http.protocol.HTTP;
 import android.app.DialogFragment;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -23,7 +22,6 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.ab.activity.AbActivity;
 import com.ab.http.AbHttpUtil;
 import com.ab.http.AbRequestParams;
@@ -35,14 +33,17 @@ import com.ab.util.AbStrUtil;
 import com.ab.util.AbToastUtil;
 import com.ab.view.progress.AbHorizontalProgressBar;
 import com.ab.view.titlebar.AbTitleBar;
+import com.lidroid.xutils.util.LogUtils;
+
 import net.wutnews.app.app.act.app.MyApplication;
 import net.wutnews.app.app.adapter.ImageShowAdapter;
 import net.wutnews.app.R;
-import net.wutnews.app.app.act.app.MyApplication;
-import net.wutnews.app.app.util.uurl;
 import net.wutnews.app.app.util.uurl;
 import net.wutnews.app.app.util.dbUtil;
 import net.wutnews.app.app.entiy.DBUserinfo;
+
+import org.apache.http.protocol.HTTP;
+
 public class AddPhotoActivity extends AbActivity {
 	
 	private MyApplication application;
@@ -80,11 +81,10 @@ public class AddPhotoActivity extends AbActivity {
 		super.onCreate(savedInstanceState);
 		setAbContentView(R.layout.add_photo);
 		application = (MyApplication) abApplication;
-		   
 		AbTitleBar mAbTitleBar = this.getTitleBar();
 		mAbTitleBar.setTitleText(R.string.photo_add_name);
 		mAbTitleBar.setLogo(R.drawable.back);
-//		mAbTitleBar.setTitleBarBackground(R.drawable.top_bg);
+		mAbTitleBar.setTitleBarBackground(R.drawable.top_bg);
 		mAbTitleBar.setTitleTextMargin(10, 0, 0, 0);
 		mAbTitleBar.setLogoLine(R.drawable.line);
 		
@@ -222,14 +222,18 @@ public class AddPhotoActivity extends AbActivity {
 	 * 他们启动时是这样的startActivityForResult
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent mIntent) {
+        LogUtils.d("调试信息.......");
 		if (resultCode != RESULT_OK){
 			return;
 		}
 		switch (requestCode) {
 			case PHOTO_PICKED_WITH_DATA:
 				Uri uri = mIntent.getData();
+
 				String currentFilePath = getPath(uri);
+                //LogUtils.d("URI:"+uri.toString());
 				if(!AbStrUtil.isEmpty(currentFilePath)){
+                    LogUtils.i("返回的图片路径:"+currentFilePath);
 					Intent intent1 = new Intent(this, CropImageActivity.class);
 					intent1.putExtra("PATH", currentFilePath);
 					startActivityForResult(intent1, CAMERA_CROP_DATA);
@@ -247,7 +251,7 @@ public class AddPhotoActivity extends AbActivity {
 			case CAMERA_CROP_DATA:
 				String path = mIntent.getStringExtra("PATH");
 		    	AbLogUtil.d(AddPhotoActivity.class, "裁剪后得到的图片的路径是 = " + path);
-		    	mImagePathAdapter.addItem(mImagePathAdapter.getCount()-1,path);
+		    	mImagePathAdapter.addItem(mImagePathAdapter.getCount() - 1, path);
 		     	camIndex++;
 				break;
 		}
@@ -278,7 +282,7 @@ public class AddPhotoActivity extends AbActivity {
 		
 		try {
 			//多文件上传添加多个即可
-//			params.put("data1",URLEncoder.encode("如果包含中文的处理方式",HTTP.UTF_8));
+			params.put("Content-Type", "multipart/form-data");
             String user;
             if(dbUtil.selectAll(this, DBUserinfo.class).size()==0){
                 Toast.makeText(getApplicationContext(), "请先登录！",
