@@ -94,7 +94,7 @@ public class LoginAct extends AppBaseAct implements View.OnClickListener {
     private void getLogin() {
 
         if (StringUtil.isBlank(StringUtil.getEditText(edt_username))) {
-            toast("请输入用户名");
+            toast("请输入校园卡账号");
             return;
         }
         if (StringUtil.isBlank(StringUtil.getEditText(edt_password))) {
