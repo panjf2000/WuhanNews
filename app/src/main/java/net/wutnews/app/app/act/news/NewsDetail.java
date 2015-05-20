@@ -2,6 +2,7 @@ package net.wutnews.app.app.act.news;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.telephony.CellIdentityCdma;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import net.wutnews.app.R;
 import net.wutnews.app.app.act.app.AppBaseAct;
+import net.wutnews.app.app.entiy.DeleteCollection;
 import net.wutnews.app.app.entiy.GetCollectNews;
 import net.wutnews.app.app.entiy.ResponseBase;
 import net.wutnews.app.app.entiy.SetCollectNews;
@@ -35,7 +37,6 @@ public class NewsDetail extends AppBaseAct implements View.OnClickListener {
     private LinearLayout ll_menulayout,ll_edtlayout,ll_edt_send,ll_edt_edt,ll_edt_menu;
     private EditText edt_comment;
     private Handler mHandler =new Handler();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +83,7 @@ public class NewsDetail extends AppBaseAct implements View.OnClickListener {
     @Override
     protected void initView() {
         news_detail_webview = (WebView) findViewById(R.id.news_detail_webview);
-
+        news_detail_webview.getSettings().setJavaScriptEnabled(true);
         iv_share = (ImageView) findViewById(R.id.iv_share);
         iv_collection = (ImageView) findViewById(R.id.iv_collection);
         iv_comment = (ImageView) findViewById(R.id.iv_comment);
@@ -138,14 +139,15 @@ public class NewsDetail extends AppBaseAct implements View.OnClickListener {
                 break;
             case R.id.ll_collection:
                 if (this.getIntent().getBooleanExtra("news_collection", false)) {
-                    toast("该文章已收藏过!");
+                    toast("该文章已收藏！");
+                    //deleteCollect(getUserinfo(this).getUser(),);
                 }else{
                     collectNews();
                 }
 
                 break;
             case R.id.ll_comment:
-                news_detail_webview.loadUrl("javascript:LGFB.setFontSize(32)");
+                news_detail_webview.loadUrl("javascript:LGFB.showComment()");
 
                 break;
             case R.id.ll_menu:
@@ -166,6 +168,7 @@ public class NewsDetail extends AppBaseAct implements View.OnClickListener {
 
             case R.id.ll_edt_send://发送评论
                 sendComment(StringUtil.getEditText(edt_comment));
+                news_detail_webview.loadUrl("javascript:LGFB.showComment()");
                 break;
             case R.id.ll_edt_edt:
                 ll_menulayout.setVisibility(View.VISIBLE);
@@ -176,7 +179,13 @@ public class NewsDetail extends AppBaseAct implements View.OnClickListener {
             case R.id.ll_edt_menu:
                 ll_menulayout.setVisibility(View.GONE);
                 ll_edtlayout.setVisibility(View.VISIBLE);
-
+                if(share_menu.getVisibility()==View.VISIBLE){
+                    share_menu.setVisibility(View.GONE);
+                }
+                if(menu_menu.getVisibility()==View.VISIBLE)
+                {
+                    menu_menu.setVisibility(View.GONE);
+                }
                 break;
 
 
@@ -190,6 +199,7 @@ public class NewsDetail extends AppBaseAct implements View.OnClickListener {
         SetCollectNews set = new SetCollectNews();
         set.setPostid(this.getIntent().getExtras().getString("newsId"));
         set.setTermid(this.getIntent().getExtras().getString("termId"));
+
         set.setUser(getUserinfo(this).getUser());
 
         HttpSender sender = new HttpSender(uurl.CollectNews, "收藏新闻", set, new OnHttpResListener() {
@@ -203,6 +213,7 @@ public class NewsDetail extends AppBaseAct implements View.OnClickListener {
                         tv_collection.setTextColor(NewsDetail.this.getResources().getColor(R.color.app_color));
                     }  else if (temp.getMsg().equals("COLLECT_EXIST")) {
                         toast("该文章已收藏过!");
+                        //deleteCollect(user,temp.getCollectid());
                     } else if (temp.getMsg().equals("GUEST_NO_COLLECT")) {
                         toast("游客禁止收藏!");
                     } else {
@@ -213,6 +224,29 @@ public class NewsDetail extends AppBaseAct implements View.OnClickListener {
         });
         sender.setContext(this);
         sender.send(uurl.MODE);
+    }
+
+    //取消收藏
+    private void deleteCollect(String user,String cid){
+        DeleteCollection dSet=new DeleteCollection();
+        dSet.setUser(user);
+        dSet.setCollectid(cid);
+        HttpSender sender = new HttpSender(uurl.DeleteCollection, "取消收藏", dSet, new OnHttpResListener() {
+            @Override
+            public void doSuccess(String data) {
+               ResponseBase temp = gsonUtil.getInstance().json2Bean(data, ResponseBase.class);
+                if (temp.getStatus() == 200) {
+                    if (temp.getMsg().equals("COLLECT_DELETE_SUCCESS")) {
+
+                        iv_collection.setImageResource(R.drawable.news_collection_white);
+                        tv_collection.setTextColor(NewsDetail.this.getResources().getColor(R.color.white));
+                    }
+                }
+            }
+        });
+        sender.setContext(this);
+        sender.send(uurl.MODE);
+
     }
 
     private void sendComment(String content)
