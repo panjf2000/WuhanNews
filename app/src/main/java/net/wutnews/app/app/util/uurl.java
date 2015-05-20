@@ -10,7 +10,7 @@ public class uurl {
     public static final HttpSender.HttpMode MODE = HttpSender.HttpMode.Get;
     public static final String SERVER_URL = "Http://lgfb.wutnews.net/";//服务器地址
     public static final String IMG_URL = "http://lgfb.wutnews.net/data/upload/";//图片下载地址前缀
-    public static final String AVATAR_URL=SERVER_URL+"data/upload/avatar/";//头像URL前缀
+    public static final String AVATAR_URL=SERVER_URL+"api/Userinfo/image";//头像URL前缀
     public static final String AES_KEY = "wutnews77AZXtvRf";//AES加密KEY
 
 
@@ -28,5 +28,6 @@ public class uurl {
     public static final String CommentList=SERVER_URL+"api/comment/show";
     public static final String DeleteComment=SERVER_URL+"api/comment/delete";
     public static final String SetSignature=SERVER_URL+"api/Userinfo/signature";
+    public static final String SetNickName=SERVER_URL+"api/Userinfo/nickname";
 
 }
