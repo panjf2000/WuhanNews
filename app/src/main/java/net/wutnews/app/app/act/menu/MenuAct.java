@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.util.LogUtils;
 
 import net.wutnews.app.R;
+import net.wutnews.app.app.act.Login.LoginAct;
 import net.wutnews.app.app.act.app.AppBaseAct;
 import net.wutnews.app.app.act.news.NewsAct;
 import net.wutnews.app.app.act.subscribe.SubscribeAct;
@@ -83,7 +84,12 @@ public class MenuAct extends AppBaseAct implements View.OnClickListener {
             default:
                 break;
             case R.id.ll_center:
-                startActivity(new Intent(this, UserCenter.class));
+                if(getUserinfo(this).getGuestLogin())
+                {
+                    //toast("你还未登陆，请先登陆！");
+                    startActivity(new Intent(this, LoginAct.class));
+                }
+                else startActivity(new Intent(this, UserCenter.class));
 
                 break;
             case R.id.ll_about:
