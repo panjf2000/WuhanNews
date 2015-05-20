@@ -27,7 +27,6 @@ public class MyComment extends AppBaseAct implements View.OnClickListener, Adapt
     private ListView lv;
     private List<GetCommentListData> list;
     private MyCommentAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +34,15 @@ public class MyComment extends AppBaseAct implements View.OnClickListener, Adapt
         setTitleBar("我的评论", 0);
         lv = (ListView) findViewById(R.id.cm_lv);
         lv.setOnItemClickListener(this);
+
         getCommentList();
     }
 
     private void getCommentList() {
+
         SetUser set = new SetUser();
         set.setUser(getUserinfo(this).getUser());
+        final String nickname=this.getIntent().getExtras().getString("nickname");
         HttpSender sender = new HttpSender(uurl.CommentList, "获取评论", set, new OnHttpResListener() {
             @Override
             public void doSuccess(String data) {
@@ -49,7 +51,7 @@ public class MyComment extends AppBaseAct implements View.OnClickListener, Adapt
                 if (temp.getStatus().equals("200")) {
                     list = temp.getData();
                     LogUtils.i("我的评论list: " + list.toString());
-                    adapter = new MyCommentAdapter(MyComment.this, list);
+                    adapter = new MyCommentAdapter(MyComment.this, list, nickname);
                     lv.setAdapter(adapter);
                 }
 
