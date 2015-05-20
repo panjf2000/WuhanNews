@@ -24,11 +24,13 @@ public class MyCommentAdapter extends ArrayAdapter<GetCommentListData> {
     private Context context;
     private ViewHolder mHolder;
     private AbImageLoader imageLoader;
+    private String nickname;
 
-    public MyCommentAdapter(Context context, List<GetCommentListData> objects) {
+    public MyCommentAdapter(Context context, List<GetCommentListData> objects,String nickname) {
         super(context, R.layout.adapter_my_collection, objects);
         this.context = context;
         imageLoader = AbImageLoader.newInstance(context);
+        this.nickname=nickname;
     }
 
     @Override
@@ -41,10 +43,12 @@ public class MyCommentAdapter extends ArrayAdapter<GetCommentListData> {
             mHolder.title = (TextView) view.findViewById(R.id.newsTitle);
             mHolder.content = (TextView) view.findViewById(R.id.newsContent);
             mHolder.time = (TextView) view.findViewById(R.id.newsCreateTime);
+            mHolder.username=(TextView)view.findViewById(R.id.userName);
             view.setTag(mHolder);
         } else {
             mHolder = (ViewHolder) view.getTag();
         }
+        mHolder.username.setText(nickname);
         mHolder.time.setText(getItem(position).getCreatetime());
         mHolder.title.setText("[原文]" + getItem(position).getTitle());
         mHolder.content.setText(getItem(position).getContent());
@@ -54,7 +58,7 @@ public class MyCommentAdapter extends ArrayAdapter<GetCommentListData> {
 
     private class ViewHolder {
         private CircleImageView img;
-        private TextView title, content, time;
+        private TextView title, content, time, username;
 
     }
 }
