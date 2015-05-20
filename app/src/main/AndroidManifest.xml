@@ -91,6 +91,14 @@
             android:label="@string/title_activity_my_comment" >
         </activity>
         <activity
+            android:name=".app.act.menu.AddPhotoActivity"
+            android:label="AddPhotoActivity">
+            </activity>
+        <activity
+            android:name=".app.act.menu.CropImageActivity"
+            android:label="CropImageActivity">
+            </activity>
+        <activity
             android:name=".app.act.menu.PostActivity"
             android:label="@string/title_activity_post"
             android:theme="@android:style/Theme.Light.NoTitleBar">
