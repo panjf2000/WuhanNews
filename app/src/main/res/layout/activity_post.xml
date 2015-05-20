@@ -1,34 +1,101 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="net.wutnews.app.app.act.menu.PostActivity">
 
     <net.wutnews.app.frame.widget.TitleBarView
         android:id="@+id/title_bar_view"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        app:center_text="个性签名"
-        app:right_text="完成"
+        app:center_text="@string/profile"
+        app:right_text="@string/done"
         app:left_image="@drawable/back"/>
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/ActivityForegroundLight"
-        android:padding="10dp"
-        android:layout_below="@+id/title_bar_view">
+          <!--  <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ActivityForegroundLight"
+            android:padding="10dp"
+            android:layout_below="@+id/title_bar_view">
+
+            <EditText
+                android:id="@+id/post_content"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:singleLine="false"
+                android:gravity="top"
+                android:textSize="@dimen/TextSize3"
+                android:textColorHint="@color/GrayGreen"
+                android:background="@android:color/transparent"/>
+
+
+
+    </RelativeLayout>-->
+    <LinearLayout
+        android:id="@+id/myNickname"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:text="昵称: "
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/post_content"
-            android:layout_width="fill_parent"
-            android:layout_height="100dp"
+            android:id="@+id/pNickName"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:singleLine="false"
-            android:gravity="top"
-            android:textSize="@dimen/TextSize3"
-            android:textColorHint="@color/GrayGreen"
+            android:paddingLeft="12dp"
+            android:text="@string/nickname"
+            android:textColor="#000000"
+            android:textSize="20sp"
             android:background="@android:color/transparent"/>
 
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/mySignature"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:text="签名: "
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
-    </RelativeLayout>
+        <EditText
+            android:id="@+id/pSignature"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:singleLine="false"
+            android:paddingLeft="12dp"
+            android:text="@string/signature"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:background="@android:color/transparent"/>
 
-</RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
