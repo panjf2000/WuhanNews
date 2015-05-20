@@ -5,9 +5,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import com.lidroid.xutils.util.LogUtils;
+
 import net.wutnews.app.R;
 import net.wutnews.app.app.act.app.AppBaseAct;
 import net.wutnews.app.app.entiy.ResponseBase;
+import net.wutnews.app.app.entiy.SetNickName;
 import net.wutnews.app.app.entiy.SetSig;
 import net.wutnews.app.app.util.uurl;
 import net.wutnews.app.frame.IdoHttpUtil.HttpSender;
@@ -16,22 +20,28 @@ import net.wutnews.app.frame.util.gsonUtil;
 import net.wutnews.app.frame.widget.TitleBarView;
 
 public class PostActivity extends AppBaseAct {
+    private EditText pNickName,pSignature;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
         TitleBarView titleBarView = (TitleBarView) findViewById(R.id.title_bar_view);
+        pNickName = (EditText)findViewById(R.id.pNickName);
+        pSignature = (EditText)findViewById(R.id.pSignature);
+        if (this.getIntent().getExtras() != null) {
+            pNickName.setText(this.getIntent().getExtras().getString("nickname"));
+            pSignature.setText(this.getIntent().getExtras().getString("signature"));
+        }
         View.OnClickListener onClickListener = new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
 
-                EditText postcontent = (EditText) findViewById(R.id.post_content);
-                String content = postcontent.getText().toString();
-                postMessage(content);
-
+                postNickName(pNickName.getText().toString());
+                postMessage(pSignature.getText().toString());
+                toast("设置成功");
             }
         };
         View.OnClickListener lonclickListener=new View.OnClickListener() {
@@ -42,6 +52,29 @@ public class PostActivity extends AppBaseAct {
         };
         titleBarView.setRightTextOnClickListener(onClickListener);
         titleBarView.setLeftImageOnClickListener(lonclickListener);
+    }
+
+    private void postNickName(String nickname){
+        SetNickName setNickName=new SetNickName();
+        setNickName.setUser(getUserinfo(this).getUser());
+        setNickName.setNickname(nickname);
+        HttpSender sender = new HttpSender(uurl.SetNickName, "设置昵称", setNickName, new OnHttpResListener() {
+            @Override
+            public void doSuccess(String data) {
+
+                ResponseBase tmp = gsonUtil.getInstance().json2Bean(data, ResponseBase.class);
+                if (tmp.getStatus() == 200) {
+                    if (tmp.getMsg().equals("SET_SUCCESS")) {
+                        //toast("昵称设置成功!");
+                        LogUtils.d("昵称设置成功!");
+                    }
+                }
+
+
+            }
+        });
+        sender.setContext(this);
+        sender.send(uurl.MODE);
     }
 
     private void postMessage(String content){
@@ -55,8 +88,8 @@ public class PostActivity extends AppBaseAct {
                 ResponseBase tmp = gsonUtil.getInstance().json2Bean(data, ResponseBase.class);
                 if (tmp.getStatus() == 200) {
                     if (tmp.getMsg().equals("SET_SUCCESS")) {
-                        toast("个签设置成功!");
-
+                        //toast("个签设置成功!");
+                        LogUtils.d("个签设置成功!");
                     }
                 }
 
