@@ -177,8 +177,8 @@ public class MyCollection extends AppBaseAct implements View.OnClickListener, Ad
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent i = new Intent(MyCollection.this, NewsDetail.class);
         i.putExtra("news_url", list.get(position).getUrl());
-        //i.putExtra("news_collection", list.get(position).getPost_collect());
-        i.putExtra("termId", 1 + "");
+        i.putExtra("news_collection", true);
+        i.putExtra("termId", list.get(position).getTermid() + "");
         i.putExtra("newsId", list.get(position).getId());
         startActivity(i);
     }
