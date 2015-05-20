@@ -62,6 +62,7 @@ public class UserCenter extends AppBaseAct implements View.OnClickListener {
             case R.id.ll_my_comment:
 
                 Intent intent = new Intent(this, MyComment.class);
+                intent.putExtra("nickname",uData.getUser_nicename());
                 startActivity(intent);
                 break;
             case R.id.ll_my_collection:
