@@ -20,7 +20,16 @@
     <string name="title_activity_user_center">UserCenter</string>
     <string name="title_activity_my_collection">MyCollection</string>
     <string name="title_activity_my_comment">MyComment</string>
-	<!-- 获取图片 -->
+	<!--个人中心 -->
+    <string name="nickname">小熊饼干</string>
+    <string name="signature">今天又是美好的一天！</string>
+    <string name="my_comments">我的评论</string>
+    <string name="my_collections">我的收藏</string>
+    <string name="edit_profile">编辑资料</string>
+    <string name="profile">个人资料</string>
+    <string name="done">完成</string>
+    <string name="logout">退出登陆</string>
+    <!-- 获取图片 -->
     <string name="GetImage_Camera">拍照</string>
     <string name="GetImage_Gallery">从图库中选择</string>
     <string name="GetImage_Cancel">取消</string>
