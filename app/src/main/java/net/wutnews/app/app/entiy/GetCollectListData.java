@@ -5,7 +5,7 @@ package net.wutnews.app.app.entiy;
  */
 public class GetCollectListData {
 
-    private String id,term_name,title,createtime,url,smeta;
+    private String id,term_name,title,createtime,url,smeta,termid;
     private boolean isDelete,isVisible;
 
     @Override
@@ -13,6 +13,7 @@ public class GetCollectListData {
         return "GetCollectListData{" +
                 "id='" + id + '\'' +
                 ", term_name='" + term_name + '\'' +
+                ",termid='"+termid+'\''+
                 ", title='" + title + '\'' +
                 ", createtime='" + createtime + '\'' +
                 ", url='" + url + '\'' +
@@ -53,6 +54,8 @@ public class GetCollectListData {
     public void setTerm_name(String term_name) {
         this.term_name = term_name;
     }
+    public void setTermid(String termid){this.termid=termid;}
+    public String getTermid(){return this.termid;}
 
     public String getTitle() {
         return title;
