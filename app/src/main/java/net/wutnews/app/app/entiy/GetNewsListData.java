@@ -12,7 +12,7 @@ public class GetNewsListData {
     private String post_modified;
     private String post_type;
     private String post_link;
-
+    private boolean post_collect;
     @Override
     public String toString() {
         return "GetNewsListData{" +
@@ -36,7 +36,7 @@ public class GetNewsListData {
         this.post_collect = post_collect;
     }
 
-    private boolean post_collect;
+
     private GetNewsListDataSmeta smeta;
 
     public String getSmeta() {
