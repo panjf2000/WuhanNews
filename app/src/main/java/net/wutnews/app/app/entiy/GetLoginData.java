@@ -7,6 +7,14 @@ public class GetLoginData {
 
     private String id,user_auth;
 
+    @Override
+    public String toString() {
+        return "GetLogin{" +
+                "id='" + id + '\'' +
+                ", user_auth='" + user_auth + '\'' +
+                '}';
+    }
+
     public String getUser_auth() {
         return user_auth;
     }
@@ -15,13 +23,6 @@ public class GetLoginData {
         this.user_auth = user_auth;
     }
 
-    @Override
-    public String toString() {
-        return "GetLogin{" +
-                "id='" + id + '\'' +
-                ", user_auth='" + user_auth + '\'' +
-                '}';
-    }
 
     public String getId() {
         return id;
