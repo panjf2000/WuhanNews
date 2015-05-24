@@ -10,6 +10,16 @@ public class GetLogin {
     private boolean type;
     private GetLoginData data;
 
+    @Override
+    public String toString() {
+        return "GetLogin{" +
+                "status=" + status +
+                ", msg='" + msg + '\'' +
+                ", type='" + type +'\'' +
+                ", data='" + data +'\'' +
+                '}';
+    }
+
     public String getMsg() {
         return msg;
     }
@@ -32,16 +42,6 @@ public class GetLogin {
 
     public void setData(GetLoginData data) {
         this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return "GetLogin{" +
-                "status=" + status +
-                ", msg='" + msg + '\'' +
-                ", type=" + type +
-                ", data=" + data +
-                '}';
     }
 
     public int getStatus() {
