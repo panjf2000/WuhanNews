@@ -30,7 +30,7 @@
                 android:id="@+id/ll_center"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="#ffffff"
+                android:background="?bookimage"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -55,7 +55,7 @@
                         android:paddingLeft="8dp"
                         android:text="个人中心"
 
-                        android:textColor="#000000"
+                        android:textColor="?tvcolor"
                         android:textSize="20sp" />
 
 
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
-                android:background="#ffffff"
+                android:background="?bookimage"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:visibility="gone">
@@ -99,7 +99,7 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="16dp"
                         android:text="我的收藏"
-                        android:textColor="#000000"
+                        android:textColor="?tvcolor"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -116,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="8dp"
-                android:background="#ffffff"
+                android:background="?bookimage"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -146,7 +146,7 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="16dp"
                             android:text="非wifi自动加载图片"
-                            android:textColor="#000000"
+                            android:textColor="?tvcolor"
                             android:textSize="20sp" />
 
                         <ImageView
@@ -169,7 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="8dp"
-                android:background="#ffffff"
+                android:background="?bookimage"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -199,7 +199,7 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="16dp"
                             android:text="非wifi自动缓存文章"
-                            android:textColor="#000000"
+                            android:textColor="?tvcolor"
                             android:textSize="20sp" />
 
                         <ImageView
@@ -220,7 +220,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="8dp"
-                android:background="#ffffff"
+                android:background="?bookimage"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -250,7 +250,7 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="16dp"
                             android:text="夜间模式"
-                            android:textColor="#000000"
+                            android:textColor="?tvcolor"
                             android:textSize="20sp" />
 
                         <ImageView
@@ -273,7 +273,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="8dp"
-                android:background="#ffffff"
+                android:background="?bookimage"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:visibility="visible">
@@ -304,7 +304,7 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="16dp"
                             android:text="清除缓存"
-                            android:textColor="#000000"
+                            android:textColor="?tvcolor"
                             android:textSize="20sp" />
 
 
@@ -318,7 +318,7 @@
                         android:gravity="top"
                         android:paddingLeft="16dp"
                         android:text="一键清除所有缓存"
-                        android:textColor="#000000"
+                        android:textColor="?tvcolor"
                         android:textSize="16sp"
                         android:visibility="gone" />
                 </LinearLayout>
@@ -336,7 +336,7 @@
                     android:paddingRight="16dp"
                     android:paddingTop="4dp"
                     android:text="清除"
-                    android:textColor="#000000"
+                    android:textColor="?tvcolor"
                     android:textSize="20sp" />
 
 
@@ -346,7 +346,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="8dp"
-                android:background="#ffffff"
+                android:background="?bookimage"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -375,7 +375,7 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="16dp"
                             android:text="字体大小"
-                            android:textColor="#000000"
+                            android:textColor="?tvcolor"
                             android:textSize="20sp" />
 
                         <LinearLayout
@@ -407,7 +407,7 @@
                                     android:gravity="center_vertical"
                                     android:paddingLeft="16dp"
                                     android:text="小"
-                                    android:textColor="#000000"
+                                    android:textColor="?tvcolor"
                                     android:textSize="16sp" />
 
                                 <TextView
@@ -417,7 +417,7 @@
                                     android:gravity="center_vertical|right"
                                     android:paddingRight="16dp"
                                     android:text="大"
-                                    android:textColor="#000000"
+                                    android:textColor="?tvcolor"
                                     android:textSize="16sp" />
 
                             </LinearLayout>
@@ -440,7 +440,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="8dp"
-                android:background="#ffffff"
+                android:background="?bookimage"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -463,7 +463,7 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="16dp"
                         android:text="关于我们"
-                        android:textColor="#000000"
+                        android:textColor="?tvcolor"
                         android:textSize="20sp" />
                 </LinearLayout>
 

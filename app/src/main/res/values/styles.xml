@@ -61,4 +61,16 @@
         <item name="android:textColor">@color/DarkGreen</item>
         <item name="android:textSize">@dimen/TextSize2</item>
     </style>
+
+    <!-- 默认风格 -->
+    <style name="BrowserThemeDefault" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="bookimage">@android:color/white</item>
+        <item name="tvcolor">@android:color/black</item>
+    </style>
+
+    <!-- 夜间模式 -->
+    <style name="BrowserThemeNight" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="bookimage">@android:color/darker_gray</item>
+        <item name="tvcolor">@android:color/white</item>
+    </style>
 </resources>

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="version_name">1.0</string>
-<!--基本参数 -->
+    <!--基本参数 -->
     <string name="app_name">理工发布</string>
     <string name="app_username">请输入校园卡账号</string>
     <string name="app_psw">校园卡密码</string>
@@ -20,7 +20,7 @@
     <string name="title_activity_user_center">UserCenter</string>
     <string name="title_activity_my_collection">MyCollection</string>
     <string name="title_activity_my_comment">MyComment</string>
-	<!--个人中心 -->
+    <!--个人中心 -->
     <string name="nickname">小熊饼干</string>
     <string name="signature">今天又是美好的一天！</string>
     <string name="my_comments">我的评论</string>

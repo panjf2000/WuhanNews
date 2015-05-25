@@ -16,6 +16,7 @@ import net.wutnews.app.R;
 import net.wutnews.app.app.act.app.AppBaseAct;
 import net.wutnews.app.app.act.menu.MenuAct;
 import net.wutnews.app.app.act.subscribe.SubscribeAct;
+import net.wutnews.app.app.entiy.DBUserinfo;
 import net.wutnews.app.app.entiy.GetTermList;
 import net.wutnews.app.app.entiy.GetTermListData;
 import net.wutnews.app.app.entiy.SetUser;
@@ -54,6 +55,13 @@ public class NewsAct extends AppBaseAct {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DBUserinfo userInfo_NIGHT = getUserinfo(this);
+        if (userInfo_NIGHT.isNightMode()) {
+            this.setTheme(R.style.BrowserThemeNight);
+
+        } else {
+            this.setTheme(R.style.BrowserThemeDefault);
+        }
         setAbContentView(R.layout.activity_news);
 
         setTitleBar("首页");

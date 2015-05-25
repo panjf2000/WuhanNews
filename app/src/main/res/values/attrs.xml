@@ -17,5 +17,10 @@
         <attr name="left_image" format="reference"/>
         <attr name="right_image" format="reference"/>
     </declare-styleable>
-	
+    <!-- 自定义夜间模式 -->
+    <declare-styleable name="NightStyle">
+        <attr name="bookimage" format="reference|color" />
+        <attr name="tvcolor" format="reference|color" />
+    </declare-styleable>
+
 </resources>

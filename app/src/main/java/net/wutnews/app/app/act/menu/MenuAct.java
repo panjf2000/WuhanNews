@@ -1,17 +1,19 @@
 package net.wutnews.app.app.act.menu;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
-import com.lidroid.xutils.util.LogUtils;
+import android.widget.Toast;
 
 import net.wutnews.app.R;
 import net.wutnews.app.app.act.Login.LoginAct;
@@ -20,6 +22,9 @@ import net.wutnews.app.app.act.news.NewsAct;
 import net.wutnews.app.app.act.subscribe.SubscribeAct;
 import net.wutnews.app.app.entiy.DBUserinfo;
 import net.wutnews.app.app.util.dbUtil;
+import net.wutnews.app.frame.util.FileUtil;
+
+import java.io.File;
 
 /**
  * Created by Pan on 2015/1/25 0025.
@@ -31,11 +36,19 @@ public class MenuAct extends AppBaseAct implements View.OnClickListener {
     private TextView  tv_clear;
     private DBUserinfo userInfo;
     public static Handler mHandler;
-
+    private PackageManager pm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DBUserinfo userInfo_NIGHT = getUserinfo(this);
+        if (userInfo_NIGHT.isNightMode()) {
+            this.setTheme(R.style.BrowserThemeNight);
+
+        } else {
+            this.setTheme(R.style.BrowserThemeDefault);
+        }
         setContentView(R.layout.activity_menu);
         setTitleBar("设置");
         setBottomBar();
@@ -47,6 +60,13 @@ public class MenuAct extends AppBaseAct implements View.OnClickListener {
         }
         if (userInfo.isNotWifiNewsCache()) {
             iv_cache.setImageResource(R.drawable.setting_open);
+        }
+
+        if (userInfo_NIGHT.isNightMode()) {
+            iv_night.setImageResource(R.drawable.setting_open);
+
+        } else {
+            iv_night.setImageResource(R.drawable.setting_close);
         }
 
         mHandler = new Handler(){
@@ -103,6 +123,38 @@ public class MenuAct extends AppBaseAct implements View.OnClickListener {
                 break;
             case R.id.tv_clear:
 
+                final AlertDialog.Builder builder = new AlertDialog.Builder(
+                        this);
+                // 添加按钮的单击事件
+                // 设置显示信息
+                builder.setMessage("是否清除缓存?")
+                        .setIcon(MenuAct.this.getResources().getDrawable(R.drawable.error_icon)).
+                                // 设置确定按钮
+                                        setPositiveButton(
+                                        "确定",
+                                        new DialogInterface.OnClickListener() {
+                                            // 单击事件
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                FileUtil.deleteFilesByDirectory(new File(Environment.getExternalStorageDirectory()
+                                                        + File.separator + "/ImageLoader/cache"));
+                                                Toast.makeText(MenuAct.this,"已清除缓存",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }).
+                        // 设置取消按钮
+                                setNegativeButton(
+                                "取消",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(
+                                            DialogInterface dialog,
+                                            int which) {
+                                    }
+                                });
+                // 创建对话框
+                AlertDialog ad = builder.create();
+                // 显示对话框
+                ad.show();
+
 
                 break;
             case R.id.iv_img:
@@ -129,16 +181,24 @@ public class MenuAct extends AppBaseAct implements View.OnClickListener {
                 dbUtil.updateByWhere(this, userInfo_CACHE, "id = '" + userInfo.getId() + "'");
                 break;
             case R.id.iv_night:
+
                 DBUserinfo userInfo_NIGHT = getUserinfo(this);
                 if (userInfo_NIGHT.isNightMode()) {
                     userInfo_NIGHT.setNightMode(false);
+                    this.setTheme(R.style.BrowserThemeNight);
                     iv_night.setImageResource(R.drawable.setting_close);
+                    Toast.makeText(this,"已切换至默认模式",Toast.LENGTH_SHORT).show();
                 } else {
                     userInfo_NIGHT.setNightMode(true);
+
+                    this.setTheme(R.style.BrowserThemeDefault);
                     iv_night.setImageResource(R.drawable.setting_open);
+                    Toast.makeText(this,"已切换至夜间模式",Toast.LENGTH_SHORT).show();
                 }
                 dbUtil.updateByWhere(this, userInfo_NIGHT, "id = '" + userInfo.getId() + "'");
-
+                Intent intent = new Intent(MenuAct.this, NewsAct.class);
+                startActivity(intent);
+                finish();
                 break;
 
         }
@@ -170,4 +230,5 @@ public class MenuAct extends AppBaseAct implements View.OnClickListener {
         });
 
     }
+
 }

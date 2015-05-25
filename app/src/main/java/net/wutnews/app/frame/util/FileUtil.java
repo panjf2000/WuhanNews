@@ -2,6 +2,7 @@ package net.wutnews.app.frame.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.media.MediaScannerConnection;
 import android.os.Environment;
 import android.os.StatFs;
 
@@ -133,7 +134,7 @@ public class FileUtil {
 	/**
 	 * 获得文件大小
 	 *
-	 * @param filePath
+	 * @param f
 	 * @return
 	 * @throws java.io.IOException
 	 */
@@ -151,7 +152,7 @@ public class FileUtil {
 	/**
 	 * 返回文件大小
 	 *
-	 * @param fileS
+	 * @param f
 	 * @return
 	 * @throws java.io.IOException
 	 */
@@ -339,8 +340,7 @@ public class FileUtil {
 	/**
 	 * 创建文件至SD卡
 	 * 
-	 * @param context
-	 * @param dirName 
+	 * @param dirName
 	 * @param fileName /dirname/+文件名
 	 * @return
 	 */
@@ -358,7 +358,6 @@ public class FileUtil {
 	
 	/**
 	 *  创建文件夹到SD卡根目录下
-	 * @param context
 	 * @param dirName 文件夹名字 栗子: /dirname
 	 * @return
 	 */
@@ -536,4 +535,19 @@ public class FileUtil {
 		}
 		return file;
 	}
+    /**
+     * 删除方法 这里只会删除某个文件夹下的文件，如果传入的directory是个文件，将不做处理
+     *
+     * @param directory
+     * @return
+     */
+    public static  void deleteFilesByDirectory(File directory) {
+        if (directory != null && directory.exists() && directory.isDirectory()) {
+            for (File item : directory.listFiles()) {
+                String fileName=item.getName();
+                item.delete();
+            }
+        }
+
+    }
 }
