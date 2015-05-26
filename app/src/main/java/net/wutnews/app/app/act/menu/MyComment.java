@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.lidroid.xutils.util.LogUtils;
@@ -13,6 +14,7 @@ import net.wutnews.app.R;
 import net.wutnews.app.app.act.app.AppBaseAct;
 import net.wutnews.app.app.act.news.NewsDetail;
 import net.wutnews.app.app.adapter.MyCommentAdapter;
+import net.wutnews.app.app.entiy.DBUserinfo;
 import net.wutnews.app.app.entiy.GetCommentList;
 import net.wutnews.app.app.entiy.GetCommentListData;
 import net.wutnews.app.app.entiy.SetUser;
@@ -27,14 +29,28 @@ public class MyComment extends AppBaseAct implements View.OnClickListener, Adapt
     private ListView lv;
     private List<GetCommentListData> list;
     private MyCommentAdapter adapter;
+    private DBUserinfo userInfo;
+    private LinearLayout ll_nightframe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        userInfo = getUserinfo(this);
+        if (userInfo.isNightMode()) {
+            this.setTheme(R.style.ThemeNight);
+
+        } else {
+            this.setTheme(R.style.ThemeDefault);
+        }
         setContentView(R.layout.activity_my_comment);
         setTitleBar("我的评论", 0);
         lv = (ListView) findViewById(R.id.cm_lv);
         lv.setOnItemClickListener(this);
-
+        ll_nightframe = (LinearLayout)findViewById(R.id.mc_nightframe_ll);
+        if (userInfo.isNightMode()) {
+            ll_nightframe.setVisibility(View.VISIBLE);
+        } else {
+            ll_nightframe.setVisibility(View.GONE);
+        }
         getCommentList();
     }
 

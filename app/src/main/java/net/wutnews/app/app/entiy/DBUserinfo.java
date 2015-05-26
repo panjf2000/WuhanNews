@@ -9,6 +9,7 @@ public class DBUserinfo {
     private boolean isNightMode=false;
     private boolean notWifiImg = false;
     private boolean notWifiNewsCache = false;
+    private int textSize = 50;
 
     @Override
     public String toString() {
@@ -17,6 +18,7 @@ public class DBUserinfo {
                 ", isNightMode=" + isNightMode +
                 ", notWifiImg=" + notWifiImg +
                 ", notWifiNewsCache=" + notWifiNewsCache +
+                ", textSize=" + textSize +
                 ", id='" + id + '\'' +
                 ", user='" + user + '\'' +
                 '}';
@@ -30,6 +32,8 @@ public class DBUserinfo {
         this.notWifiImg = notWifiImg;
     }
 
+    public void setTextSize(int textSize){this.textSize = textSize;}
+
     public boolean isNotWifiNewsCache() {
         return notWifiNewsCache;
     }
@@ -41,6 +45,8 @@ public class DBUserinfo {
     public boolean isNightMode() {
         return isNightMode;
     }
+
+    public int getTextSize(){return textSize;}
 
     public void setNightMode(boolean isNightMode) {
         this.isNightMode = isNightMode;

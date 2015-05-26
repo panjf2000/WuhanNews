@@ -19,8 +19,11 @@
     </declare-styleable>
     <!-- 自定义夜间模式 -->
     <declare-styleable name="NightStyle">
-        <attr name="bookimage" format="reference|color" />
-        <attr name="tvcolor" format="reference|color" />
+        <attr name="main_bg" format="reference|color" />
+        <attr name="main_tx" format="reference|color" />
+        <attr name="titlebar_bg" format="reference|color" />
+        <attr name="titlebar_tx" format="reference|color" />
+        <attr name="frame_bg" format="reference|color" />
     </declare-styleable>
 
 </resources>

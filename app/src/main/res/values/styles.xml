@@ -63,14 +63,20 @@
     </style>
 
     <!-- 默认风格 -->
-    <style name="BrowserThemeDefault" parent="@android:style/Theme.Black.NoTitleBar">
-        <item name="bookimage">@android:color/white</item>
-        <item name="tvcolor">@android:color/black</item>
+    <style name="ThemeDefault" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="main_bg">@android:color/white</item>
+        <item name="main_tx">@android:color/black</item>
+        <item name="frame_bg">#99000000</item>
+        <item name="titlebar_bg">@android:color/darker_gray</item>
+        <item name="titlebar_tx">@android:color/white</item>
     </style>
 
     <!-- 夜间模式 -->
-    <style name="BrowserThemeNight" parent="@android:style/Theme.Black.NoTitleBar">
-        <item name="bookimage">@android:color/darker_gray</item>
-        <item name="tvcolor">@android:color/white</item>
+    <style name="ThemeNight" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="main_bg">@android:color/white</item>
+        <item name="main_tx">@android:color/black</item>
+        <item name="frame_bg">#99000000</item>
+        <item name="titlebar_bg">@android:color/darker_gray</item>
+        <item name="titlebar_tx">@android:color/darker_gray</item>
     </style>
 </resources>

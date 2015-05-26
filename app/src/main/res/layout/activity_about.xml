@@ -1,4 +1,9 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="#ffffff"
+        android:background="?main_bg"
         android:orientation="vertical"
         android:padding="8dp">
 
@@ -20,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="产品信息"
-            android:textColor="#000000"
+           android:textColor="?main_tx"
             android:textSize="20sp" />
 
         <TextView
@@ -29,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="武汉理工大学新闻客户端 for Android"
-            android:textColor="#000000"
+           android:textColor="?main_tx"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -39,7 +44,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="#ffffff"
+        android:background="?main_bg"
         android:orientation="vertical"
         android:padding="8dp">
 
@@ -47,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="团队介绍"
-            android:textColor="#000000"
+           android:textColor="?main_tx"
             android:textSize="20sp" />
 
         <TextView
@@ -55,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="维护团队: \n        武汉理工大学新闻中心是武汉理工大学党委宣传部下一支学生记者团队。\n开发团队: \n        武汉理工大学Token团队是由学生自己组建的一支充满活力的队伍。"
-            android:textColor="#000000"
+           android:textColor="?main_tx"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -65,7 +70,7 @@
         android:layout_height="44dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="#ffffff"
+        android:background="?main_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="8dp">
@@ -76,7 +81,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:text="给我们提建议"
-            android:textColor="#000000"
+           android:textColor="?main_tx"
             android:textSize="20sp" />
 
         <ImageView
@@ -89,3 +94,19 @@
 
 
 </LinearLayout>
+<LinearLayout
+android:id="@+id/about_nightframe_ll"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:visibility="visible"
+    >
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0dip"
+    android:background="?frame_bg"
+    android:layout_weight="1"
+    />
+
+</LinearLayout>
+    </FrameLayout>

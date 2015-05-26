@@ -13,6 +13,7 @@ import net.wutnews.app.R;
 import net.wutnews.app.app.act.app.AppBaseAct;
 import net.wutnews.app.app.act.news.NewsDetail;
 import net.wutnews.app.app.adapter.MyCollectionAdapter;
+import net.wutnews.app.app.entiy.DBUserinfo;
 import net.wutnews.app.app.entiy.DeleteCollection;
 import net.wutnews.app.app.entiy.GetCollectList;
 import net.wutnews.app.app.entiy.GetCollectListData;
@@ -33,11 +34,20 @@ public class MyCollection extends AppBaseAct implements View.OnClickListener, Ad
     private List<GetCollectListData> list;
     private LinearLayout ll_delete;
     private boolean isVisible = false, isGoing = true;
+    private DBUserinfo userInfo;
+    private LinearLayout ll_nightframe;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        userInfo = getUserinfo(this);
+        if (userInfo.isNightMode()) {
+            this.setTheme(R.style.ThemeNight);
+
+        } else {
+            this.setTheme(R.style.ThemeDefault);
+        }
         setContentView(R.layout.activity_my_collection);
 
         setTitleBar("我的收藏", 0);
@@ -47,6 +57,14 @@ public class MyCollection extends AppBaseAct implements View.OnClickListener, Ad
         ll_delete = (LinearLayout) findViewById(R.id.ll_delete);
         ll_delete.setOnClickListener(this);
         lv.setOnItemClickListener(this);
+
+        ll_nightframe = (LinearLayout)findViewById(R.id.my_nightframe_ll);
+        if (userInfo.isNightMode()) {
+            ll_nightframe.setVisibility(View.VISIBLE);
+        } else {
+            ll_nightframe.setVisibility(View.GONE);
+        }
+
         getCollectList();
 
 

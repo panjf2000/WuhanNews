@@ -1,10 +1,12 @@
 package net.wutnews.app.app.act.subscribe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import com.lidroid.xutils.util.LogUtils;
@@ -15,6 +17,7 @@ import net.wutnews.app.app.act.menu.MenuAct;
 import net.wutnews.app.app.act.news.NewsAct;
 import net.wutnews.app.app.adapter.SubscribeAdapter;
 import net.wutnews.app.app.entiy.DBSubscribeStatus;
+import net.wutnews.app.app.entiy.DBUserinfo;
 import net.wutnews.app.app.entiy.GetTermList;
 import net.wutnews.app.app.entiy.GetTermListData;
 import net.wutnews.app.app.entiy.ResponseBase;
@@ -38,15 +41,41 @@ public class SubscribeAct extends AppBaseAct implements View.OnClickListener {
     private List<GetTermListData> dbSub;
     private SubscribeAdapter adapter;
     private String msg;
+    private LinearLayout ll_nightframe;
+    //private boolean blFlag;
+    private DBUserinfo userInfo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*SharedPreferences preferences = getSharedPreferences("default_night",
+                MODE_PRIVATE);
+        blFlag = preferences.getBoolean("default_night",true);
+        if (blFlag) {
+            this.setTheme(R.style.ThemeNight);
+        }
+        else {
+            this.setTheme(R.style.ThemeDefault);
+        }*/
+
+        //设置夜间模式主题
+        userInfo = getUserinfo(this);
+        if (userInfo.isNightMode()) {
+            this.setTheme(R.style.ThemeNight);
+
+        } else {
+            this.setTheme(R.style.ThemeDefault);
+        }
         setContentView(R.layout.activity_subscribe);
         setTitleBar("订阅");
         setBottomBar();
-
         findView();
+        //设置夜间模式
+        if (userInfo.isNightMode()) {
+            ll_nightframe.setVisibility(View.VISIBLE);
+        } else {
+            ll_nightframe.setVisibility(View.GONE);
+        }
         getAllSub();
     }
 
@@ -79,6 +108,7 @@ public class SubscribeAct extends AppBaseAct implements View.OnClickListener {
 
     private void findView() {
         gridView = (GridView) findViewById(R.id.sub_gv);
+        ll_nightframe = (LinearLayout)findViewById(R.id.sub_nightframe_ll);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

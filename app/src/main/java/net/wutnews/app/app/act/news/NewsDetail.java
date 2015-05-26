@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.telephony.CellIdentityCdma;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import net.wutnews.app.R;
 import net.wutnews.app.app.act.app.AppBaseAct;
+import net.wutnews.app.app.entiy.DBUserinfo;
 import net.wutnews.app.app.entiy.DeleteCollection;
 import net.wutnews.app.app.entiy.GetCollectNews;
 import net.wutnews.app.app.entiy.ResponseBase;
@@ -37,16 +39,29 @@ public class NewsDetail extends AppBaseAct implements View.OnClickListener {
     private LinearLayout ll_menulayout,ll_edtlayout,ll_edt_send,ll_edt_edt,ll_edt_menu;
     private EditText edt_comment;
     private Handler mHandler =new Handler();
+    private DBUserinfo userInfo;
+    private LinearLayout ll_nightframe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        userInfo = getUserinfo(this);
+        if (userInfo.isNightMode()) {
+            this.setTheme(R.style.ThemeNight);
+
+        } else {
+            this.setTheme(R.style.ThemeDefault);
+        }
         setAbContentView(R.layout.activity_news_detail);
 
         if (this.getIntent().getExtras() != null) {
             setTitleBar("新闻详情", 0);
             initView();
-
+            if (userInfo.isNightMode()) {
+                ll_nightframe.setVisibility(View.VISIBLE);
+            } else {
+                ll_nightframe.setVisibility(View.GONE);
+            }
             news_detail_webview.loadUrl(this.getIntent().getExtras().getString("news_url"));
 //            news_detail_webview.addJavascriptInterface(new Object(){
 //                public void clickOnAndroid(){
@@ -84,6 +99,13 @@ public class NewsDetail extends AppBaseAct implements View.OnClickListener {
     protected void initView() {
         news_detail_webview = (WebView) findViewById(R.id.news_detail_webview);
         news_detail_webview.getSettings().setJavaScriptEnabled(true);
+        //调整字体大小
+        int i = userInfo.getTextSize();
+        if(i>=0&&i<20){news_detail_webview.getSettings().setTextSize(WebSettings.TextSize.SMALLEST);}
+        if(i>=20&&i<40){news_detail_webview.getSettings().setTextSize(WebSettings.TextSize.SMALLER);}
+        if(i>=40&&i<60){news_detail_webview.getSettings().setTextSize(WebSettings.TextSize.NORMAL);}
+        if(i>=60&&i<80){news_detail_webview.getSettings().setTextSize(WebSettings.TextSize.LARGER);}
+        if(i>=80&&i<=100){news_detail_webview.getSettings().setTextSize(WebSettings.TextSize.LARGEST);}
         iv_share = (ImageView) findViewById(R.id.iv_share);
         iv_collection = (ImageView) findViewById(R.id.iv_collection);
         iv_comment = (ImageView) findViewById(R.id.iv_comment);
@@ -121,6 +143,7 @@ public class NewsDetail extends AppBaseAct implements View.OnClickListener {
         ll_edt_menu = (LinearLayout) findViewById(R.id.ll_edt_menu);
         ll_edt_menu.setOnClickListener(this);
         edt_comment = (EditText) findViewById(R.id.edt_comment);
+        ll_nightframe = (LinearLayout)findViewById(R.id.nd_nightframe_ll);
 
     }
 

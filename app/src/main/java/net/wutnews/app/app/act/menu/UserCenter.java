@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.lidroid.xutils.util.LogUtils;
 import net.wutnews.app.R;
@@ -26,14 +27,28 @@ public class UserCenter extends AppBaseAct implements View.OnClickListener {
     private ImageView iv_head;
     private GetUserDe uData;
     private ImageLoaderUtil imageUtil;
+    private DBUserinfo userInfo;
+    private LinearLayout ll_nightframe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        userInfo = getUserinfo(this);
+        if (userInfo.isNightMode()) {
+            this.setTheme(R.style.ThemeNight);
+
+        } else {
+            this.setTheme(R.style.ThemeDefault);
+        }
         setContentView(R.layout.activity_user_center);
         imageUtil = ImageLoaderUtil.getInstance();
         setTitleBar("个人中心", 0);
         findView();
+        if (userInfo.isNightMode()) {
+            ll_nightframe.setVisibility(View.VISIBLE);
+        } else {
+            ll_nightframe.setVisibility(View.GONE);
+        }
         getUserInfo();
     }
 
@@ -41,6 +56,7 @@ public class UserCenter extends AppBaseAct implements View.OnClickListener {
         tv_name = (TextView) findViewById(R.id.tv_name);
         tv_sign = (TextView) findViewById(R.id.tv_sign);
         iv_head = (ImageView) findViewById(R.id.iv_head);
+        ll_nightframe = (LinearLayout)findViewById(R.id.uc_nightframe_ll);
         iv_head.setOnClickListener(this);
         findViewById(R.id.ll_my_comment).setOnClickListener(this);
         findViewById(R.id.ll_my_collection).setOnClickListener(this);

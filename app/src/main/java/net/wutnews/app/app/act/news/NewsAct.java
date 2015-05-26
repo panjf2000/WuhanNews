@@ -8,6 +8,7 @@ import android.os.Message;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 import com.ab.view.sliding.AbSlidingTabView;
@@ -34,6 +35,8 @@ public class NewsAct extends AppBaseAct {
     private List<Fragment> mFragments;
     private List<String> tabTexts;
     private static boolean isExit = false;
+    private DBUserinfo userInfo;
+    private LinearLayout ll_nightframe;
     Handler mHandler = new Handler() {
 
         @Override
@@ -49,24 +52,30 @@ public class NewsAct extends AppBaseAct {
         mAbSlidingTabView = (AbSlidingTabView) findViewById(R.id.mAbSlidingTabView);
         //缓存数量
         mAbSlidingTabView.getViewPager().setOffscreenPageLimit(4);
+        ll_nightframe = (LinearLayout)findViewById(R.id.na_nightframe_ll);
 
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DBUserinfo userInfo_NIGHT = getUserinfo(this);
-        if (userInfo_NIGHT.isNightMode()) {
-            this.setTheme(R.style.BrowserThemeNight);
+        userInfo = getUserinfo(this);
+        if (userInfo.isNightMode()) {
+            this.setTheme(R.style.ThemeNight);
 
         } else {
-            this.setTheme(R.style.BrowserThemeDefault);
+            this.setTheme(R.style.ThemeDefault);
         }
         setAbContentView(R.layout.activity_news);
 
         setTitleBar("首页");
         setBottomBar();
         initView();
+        if (userInfo.isNightMode()) {
+            ll_nightframe.setVisibility(View.VISIBLE);
+        } else {
+            ll_nightframe.setVisibility(View.GONE);
+        }
         getTermList();
     }
 
