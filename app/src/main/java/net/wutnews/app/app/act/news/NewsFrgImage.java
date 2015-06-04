@@ -1,7 +1,10 @@
 package net.wutnews.app.app.act.news;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,18 +12,28 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.ab.view.pullview.AbPullToRefreshView;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.HttpHandler;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+
 
 import net.wutnews.app.R;
 import net.wutnews.app.app.act.app.AppBaseFrg;
 import net.wutnews.app.app.adapter.NewsListImageAdapter;
+import net.wutnews.app.app.entiy.DaoMaster;
+import net.wutnews.app.app.entiy.DaoSession;
 import net.wutnews.app.app.entiy.GetNewsList;
 import net.wutnews.app.app.entiy.GetNewsListData;
+import net.wutnews.app.app.entiy.GetNewsListDataDao;
 import net.wutnews.app.app.entiy.SetNewsList;
 import net.wutnews.app.app.util.uurl;
 import net.wutnews.app.frame.IdoHttpUtil.HttpSender;
 import net.wutnews.app.frame.IdoHttpUtil.OnHttpResListener;
 import net.wutnews.app.frame.util.gsonUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +43,7 @@ import java.util.List;
  */
 public class NewsFrgImage extends AppBaseFrg implements AdapterView.OnItemClickListener, AbPullToRefreshView.OnHeaderRefreshListener, AbPullToRefreshView.OnFooterLoadListener {
     private String termId = "3";
+    public  String imagePath  =  "/data/data/wutnews/app/";
 
     public NewsFrgImage(String termId) {
         this.termId = termId;
@@ -55,6 +69,7 @@ public class NewsFrgImage extends AppBaseFrg implements AdapterView.OnItemClickL
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         mView = inflater.inflate(R.layout.activity_news_list, null);
         cacheList = new ArrayList<>();
         list = new ArrayList<>();
@@ -166,6 +181,7 @@ public class NewsFrgImage extends AppBaseFrg implements AdapterView.OnItemClickL
                 newsListAdapter = new NewsListImageAdapter(getActivity(), list, listUp);
                 mListView.setAdapter(newsListAdapter);
                 mAbPullToRefreshView.onFooterLoadFinish();
+                addCache(list, termId);
             }
 
         });
@@ -204,6 +220,7 @@ public class NewsFrgImage extends AppBaseFrg implements AdapterView.OnItemClickL
                 newsListAdapter = new NewsListImageAdapter(getActivity(), list, listUp);
                 mListView.setAdapter(newsListAdapter);
                 mAbPullToRefreshView.onHeaderRefreshFinish();
+                addCache(list,termId);
             }
 
         });
@@ -224,5 +241,62 @@ public class NewsFrgImage extends AppBaseFrg implements AdapterView.OnItemClickL
         i.putExtra("termId", termId + "");
         i.putExtra("newsId", list.get(position).getId());
         startActivity(i);
+    }
+
+    public void addCache(List<GetNewsListData> list,String termId){
+
+
+        SQLiteOpenHelper helper = new DaoMaster.DevOpenHelper(this.getActivity(),"newslistdb",null);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        DaoMaster daoMaster = new DaoMaster(db);
+        DaoSession daoSession = daoMaster.newSession();
+
+        GetNewsListDataDao getNewsListDataDao = daoSession.getGetNewsListDataDao();
+        getNewsListDataDao.deleteAll();
+        for(GetNewsListData data : list){
+
+            download(data.getSmeta());
+
+            data.setTerm_id(termId);
+            data.setThumb(data.getSmeta());
+
+            getNewsListDataDao.insert( data);
+
+
+        }
+
+    }
+
+    private void download(String smeta) {
+
+        HttpUtils http = new HttpUtils();
+        HttpHandler handler = http.download(uurl.IMG_URL+smeta,
+                imagePath+smeta,
+                true, // 如果目标文件存在，接着未完成的部分继续下载。服务器不支持RANGE时将从新下载。
+                false, // 如果从请求返回信息中获取到文件名，下载完成后自动重命名。
+                new RequestCallBack<File>() {
+
+                    @Override
+                    public void onStart() {
+                        Log.i("status","start");
+                    }
+
+                    @Override
+                    public void onLoading(long total, long current, boolean isUploading) {
+                        Log.i("status","load");
+                    }
+
+                    @Override
+                    public void onSuccess(ResponseInfo<File> responseInfo) {
+                        Log.i("status","success");
+                    }
+
+
+                    @Override
+                    public void onFailure(HttpException error, String msg) {
+                        Log.i("status","failure");
+                    }
+                });
+
     }
 }

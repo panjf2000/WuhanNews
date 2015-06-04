@@ -1,6 +1,8 @@
 package net.wutnews.app.app.act.news;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +18,11 @@ import com.ab.view.pullview.AbPullToRefreshView;
 import net.wutnews.app.R;
 import net.wutnews.app.app.act.app.AppBaseFrg;
 import net.wutnews.app.app.adapter.NewsListAdapter;
+import net.wutnews.app.app.entiy.DaoMaster;
+import net.wutnews.app.app.entiy.DaoSession;
 import net.wutnews.app.app.entiy.GetNewsList;
 import net.wutnews.app.app.entiy.GetNewsListData;
+import net.wutnews.app.app.entiy.GetNewsListDataDao;
 import net.wutnews.app.app.entiy.SetNewsList;
 import net.wutnews.app.app.util.uurl;
 import net.wutnews.app.frame.IdoHttpUtil.HttpSender;
@@ -167,6 +172,7 @@ public class NewsFrgText extends AppBaseFrg implements AdapterView.OnItemClickLi
                 newsListAdapter = new NewsListAdapter(getActivity(), list, listUp, termId, datalIST.getTermname());
                 mListView.setAdapter(newsListAdapter);
                 mAbPullToRefreshView.onFooterLoadFinish();
+                addCache(list,termId);
             }
 
         });
@@ -203,6 +209,7 @@ public class NewsFrgText extends AppBaseFrg implements AdapterView.OnItemClickLi
                 newsListAdapter = new NewsListAdapter(getActivity(), list, listUp, termId, datalIST.getTermname());
                 mListView.setAdapter(newsListAdapter);
                 mAbPullToRefreshView.onHeaderRefreshFinish();
+                addCache(list,termId);
             }
 
         });
@@ -223,5 +230,28 @@ public class NewsFrgText extends AppBaseFrg implements AdapterView.OnItemClickLi
         i.putExtra("termId", termId + "");
         i.putExtra("newsId", list.get(position).getId());
         startActivity(i);
+    }
+    public void addCache(List<GetNewsListData> list,String termId){
+
+
+        SQLiteOpenHelper helper = new DaoMaster.DevOpenHelper(this.getActivity(),"newslistdb",null);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        DaoMaster daoMaster = new DaoMaster(db);
+        DaoSession daoSession = daoMaster.newSession();
+
+        GetNewsListDataDao getNewsListDataDao = daoSession.getGetNewsListDataDao();
+        getNewsListDataDao.deleteAll();
+        for(GetNewsListData data : list){
+
+
+
+            data.setTerm_id(termId);
+            data.setThumb(data.getSmeta());
+
+            getNewsListDataDao.insert( data);
+
+
+        }
+
     }
 }

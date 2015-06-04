@@ -24,6 +24,8 @@ android {
 dependencies {
     compile project(':AndBase')
     compile files('libs/universal-image-loader-1.9.3.jar')
+    compile files('libs/greendao-1.3.7.jar')
+
 }
 
 android {
